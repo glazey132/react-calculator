@@ -7,7 +7,7 @@ function Display(props) {
       name="displayInput"
       onChange={props.handleDisplayChange}
       value={props.displayValue}
-      style={{ textAlign: 'right' }}
+      style={{ textAlign: 'right', marginTop: '.2rem' }}
     />
   );
 }

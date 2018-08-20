@@ -10,9 +10,17 @@ class Calculator extends Component {
   }
   render() {
     return (
-      <div className="">
+      <section
+        style={{
+          border: '1px solid darkgrey',
+          width: '10rem',
+          height: '10rem',
+          marginLeft: 'auto',
+          marginRight: 'auto'
+        }}
+      >
         <Display displayValue={this.state.displayValue} />
-      </div>
+      </section>
     );
   }
 }

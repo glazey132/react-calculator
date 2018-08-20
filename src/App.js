@@ -8,15 +8,15 @@ import io from 'socket.io-client';
 class App extends Component {
   constructor(props) {
     super(props);
-    const socket =  io.connect(
-      "https://react-calculator-69586.herokuapp.com",
+    const socket = io.connect(
+      'https://react-calculator-69586.herokuapp.com',
       {
         transports: ['websocket'],
         upgrade: false
       }
-    )
+    );
     this.state = {
-      socket
+      socket,
       calculations: []
     };
 

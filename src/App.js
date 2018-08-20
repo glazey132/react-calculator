@@ -10,7 +10,7 @@ class App extends Component {
     super(props);
     this.state = {
       socket: io.connect(
-        `react-calculator-69586.herokuapp.com`,
+        'https://react-calculator-69586.herokuapp.com/',
         {
           reconnectionDelay: 1000,
           reconnection: true,

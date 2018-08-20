@@ -5,8 +5,8 @@ function Keyboard(props) {
     <section
       style={{
         border: '1px solid darkgrey',
-        width: '8rem',
-        height: '8rem',
+        width: '15rem',
+        height: '15rem',
         marginLeft: 'auto',
         marginRight: 'auto',
         display: 'flex',
@@ -18,17 +18,27 @@ function Keyboard(props) {
           <button
             key={key}
             value={key}
-            style={{ width: '1.5rem', height: '1.2rem', margin: '.1rem' }}
+            style={{
+              width: '3.5rem',
+              height: '2.2rem',
+              margin: '.11rem',
+              borderRadius: '1rem'
+            }}
             onClick={e => props.handleKeyPress(e.target.value)}
           >
             {key}
           </button>
         ))}
-        {props.operandKeys.map(key => (
+        {props.operatorKeys.map(key => (
           <button
             key={key}
             value={key}
-            style={{ width: '1.5rem', height: '1.2rem', margin: '.1rem' }}
+            style={{
+              width: '3.5rem',
+              height: '2.2rem',
+              margin: '.11rem',
+              borderRadius: '1rem'
+            }}
             onClick={e => props.handleKeyPress(e.target.value)}
           >
             {key}
@@ -38,7 +48,12 @@ function Keyboard(props) {
           <button
             key={key}
             value={key}
-            style={{ width: '1.5rem', height: '1.2rem', margin: '.1rem' }}
+            style={{
+              width: '3.5rem',
+              height: '2.2rem',
+              margin: '.11rem',
+              borderRadius: '1rem'
+            }}
             onClick={e => props.handleKeyPress(e.target.value)}
           >
             {key}

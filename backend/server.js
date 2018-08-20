@@ -52,6 +52,7 @@ io.on('connection', function(socket) {
   console.log('connected to sockets!');
 
   socket.on('mount', function() {
+    console.log('user mounted');
     Calculation.find()
       .sort({ timestamp: 'desc' })
       .limit(10)
@@ -60,6 +61,7 @@ io.on('connection', function(socket) {
       });
   });
   socket.on('computation', function(computation) {
+    console.log('socket received computation ', computation);
     let newDate = new Date().toLocaleString();
     let newCalculation = new Calculation({
       computation: computation,

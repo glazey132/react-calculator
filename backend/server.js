@@ -66,6 +66,6 @@ io.on('connection', function(socket) {
   });
 });
 
-server.listen(process.env.SERVER_PORT, function() {
+server.listen(process.env.SERVER_PORT || 8080, function() {
   console.log('Backend server for Electron App running on port 8080!');
 });

@@ -9,7 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      socket: io(),
+      socket: io('react-calculator-69586.herokuapp.com:8080'),
       calculations: []
     };
 

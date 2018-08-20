@@ -15,7 +15,7 @@ class Calculator extends Component {
     };
   }
 
-  handleKeyPress(e) {
+  handleKeyPress = async e => {
     console.log('event in calc ', e);
     if (_.indexOf(operands, e) !== -1) {
       console.log('is a operand', e);
@@ -23,9 +23,14 @@ class Calculator extends Component {
       console.log('is a fn', e);
     } else if (_.indexOf(nums, e) !== -1) {
       console.log('is a num ', e);
+      this.setState(prev => ({
+        displayValue: prev.displayValue + e
+      }));
     }
-  }
+  };
+
   render() {
+    const { displayValue } = this.state;
     return (
       <section
         style={{
@@ -36,10 +41,12 @@ class Calculator extends Component {
           marginRight: 'auto'
         }}
       >
-        <Display displayValue={this.state.displayValue} />
+        <Display displayValue={displayValue} />
         <Keyboard
           handleKeyPress={this.handleKeyPress}
-          buttonKeys={this.props.buttonKeys}
+          numKeys={nums}
+          fnKeys={fns}
+          operandKeys={operands}
         />
       </section>
     );

@@ -20,6 +20,11 @@ class Calculator extends Component {
     console.log('event in calc ', e);
     if (_.indexOf(operands, e) !== -1) {
     } else if (_.indexOf(fns, e) !== -1) {
+      if (e === 'C') {
+        this.setState({
+          displayValue: '0'
+        });
+      }
     } else if (_.indexOf(nums, e) !== -1) {
       if (e === '.') {
         if (displayValue.indexOf('.') === -1) {

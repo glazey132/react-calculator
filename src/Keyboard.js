@@ -24,7 +24,7 @@ function Keyboard(props) {
             {key}
           </button>
         ))}
-        {props.fnKeys.map(key => (
+        {props.operandKeys.map(key => (
           <button
             key={key}
             value={key}
@@ -34,7 +34,7 @@ function Keyboard(props) {
             {key}
           </button>
         ))}
-        {props.operandKeys.map(key => (
+        {props.fnKeys.map(key => (
           <button
             key={key}
             value={key}

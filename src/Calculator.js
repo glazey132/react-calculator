@@ -16,16 +16,22 @@ class Calculator extends Component {
   }
 
   handleKeyPress = async e => {
+    const { displayValue } = this.state;
     console.log('event in calc ', e);
     if (_.indexOf(operands, e) !== -1) {
-      console.log('is a operand', e);
     } else if (_.indexOf(fns, e) !== -1) {
-      console.log('is a fn', e);
     } else if (_.indexOf(nums, e) !== -1) {
-      console.log('is a num ', e);
-      this.setState(prev => ({
-        displayValue: prev.displayValue + e
-      }));
+      if (e === '.') {
+        if (displayValue.indexOf('.') === -1) {
+          this.setState(prev => ({
+            displayValue: prev.displayValue + '.'
+          }));
+        }
+      } else {
+        this.setState(prev => ({
+          displayValue: prev.displayValue === '0' ? e : prev.displayValue + e
+        }));
+      }
     }
   };
 

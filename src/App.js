@@ -17,7 +17,7 @@ class App extends Component {
           agent: false,
           upgrade: false,
           rejectUnauthorized: false
-       })
+       }),
       calculations: []
     };
 

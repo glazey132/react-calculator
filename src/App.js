@@ -12,13 +12,8 @@ class App extends Component {
       socket: io.connect(
         'https://react-calculator-69586.herokuapp.com/',
         {
-          reconnectionDelay: 1000,
-          reconnection: true,
-          reconnectionAttempts: 10,
           transports: ['websocket'],
-          agent: false,
-          upgrade: false,
-          rejectUnauthorized: false
+          upgrade: false
         }
       ),
       calculations: []

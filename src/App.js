@@ -9,9 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      socket: io('react-calculator-69586.herokuapp.com', {
-        transports: ['websocket']
-      }),
+      socket: io('react-calculator-69586.herokuapp.com'),
       calculations: []
     };
 

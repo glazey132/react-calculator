@@ -4,7 +4,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const server = require('http').Server(app);
+const server = app.listen(process.env.SERVER_PORT || 8080);
 const io = require('socket.io')(server);
 
 const Calculation = require('./models').Calculation;
@@ -66,6 +66,6 @@ io.on('connection', function(socket) {
   });
 });
 
-server.listen(process.env.SERVER_PORT || 8080, function() {
-  console.log('Backend server for Electron App running on port 8080!');
-});
+// server.listen(process.env.SERVER_PORT || 8080, function() {
+//   console.log('Backend server for Electron App running on port 8080!');
+// });

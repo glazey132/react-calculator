@@ -9,21 +9,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      socket: io.connect(`react-calculator-69586.herokuapp.com:8080`,{
+      socket: io.connect(
+        `react-calculator-69586.herokuapp.com:8080`,
+        {
           reconnectionDelay: 1000,
-          reconnection:true,
+          reconnection: true,
           reconnectionAttempts: 10,
           transports: ['websocket'],
           agent: false,
           upgrade: false,
           rejectUnauthorized: false
-       }),
+        }
+      ),
       calculations: []
     };
-
-    this.state.socket.on('connect', {
-      console.log('Client connected to sockets');
-    })
 
     this.state.socket.on('calculationsUpdate', calcs => {
       this.setState({

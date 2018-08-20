@@ -3,6 +3,26 @@ import logo from './logo.svg';
 import './App.css';
 import Calculator from './Calculator';
 
+const keys = [
+  '0',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '.',
+  '+',
+  '-',
+  '*',
+  '/',
+  'C',
+  '='
+];
+
 class App extends Component {
   render() {
     return (
@@ -22,7 +42,7 @@ class App extends Component {
             height: '40rem'
           }}
         >
-          <Calculator />
+          <Calculator buttonKeys={keys} />
         </section>
       </div>
     );

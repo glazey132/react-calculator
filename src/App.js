@@ -6,21 +6,24 @@ import Calculations from './Calculations';
 import io from 'socket.io-client';
 
 class App extends Component {
-  let socketClient = io.connect(`react-calculator-69586.herokuapp.com:8080`,{ 
-      reconnectionDelay: 1000,
-      reconnection:true,
-      reconnectionAttempts: 10,
-      transports: ['websocket'],
-      agent: false,
-      upgrade: false,
-      rejectUnauthorized: false
-   });
   constructor(props) {
     super(props);
     this.state = {
-      socket: socketClient,
+      socket: io.connect(`react-calculator-69586.herokuapp.com:8080`,{
+          reconnectionDelay: 1000,
+          reconnection:true,
+          reconnectionAttempts: 10,
+          transports: ['websocket'],
+          agent: false,
+          upgrade: false,
+          rejectUnauthorized: false
+       })
       calculations: []
     };
+
+    this.state.socket.on('connect', {
+      console.log('Client connected to sockets');
+    })
 
     this.state.socket.on('calculationsUpdate', calcs => {
       this.setState({

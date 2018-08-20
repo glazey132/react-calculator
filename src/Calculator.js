@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Display from './Display';
 import Keyboard from './Keyboard';
 import _ from 'lodash';
+import axios from 'axios';
 
 const nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const operators = ['+', '-', '*', '/'];
@@ -57,20 +58,25 @@ class Calculator extends Component {
       '=': (prevValue, newValue) => newValue
     };
 
-    const { displayValue, operator, value } = this.state;
+    const { displayValue, operator, value, waitingForOperand } = this.state;
     const nextValue = parseFloat(displayValue);
 
     if (value === null) {
       this.setState({
         value: nextValue
       });
-    } else if (operator) {
+    } else if (operator && newOperator === '=' && !waitingForOperand) {
       const currentValue = value || 0;
       const computed = operations[operator](currentValue, nextValue);
+      this.props.socket.emit(
+        'computation',
+        `${currentValue}${operator}${nextValue}=${computed}`
+      );
 
       this.setState({
         value: computed,
-        displayValue: String(computed)
+        displayValue: String(computed),
+        waitingForOperand: false
       });
     }
     this.setState({
@@ -82,7 +88,9 @@ class Calculator extends Component {
   clearDisplay = () => {
     this.setState({
       displayValue: '0',
-      value: null
+      value: null,
+      operator: null,
+      waitingForOperand: false
     });
   };
 

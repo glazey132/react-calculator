@@ -17,10 +17,18 @@ class Calculations extends Component {
           marginLeft: 'auto',
           marginRight: 'auto',
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          overflow: 'scroll'
         }}
       >
-        <p>calculations section </p>
+        <h5>10 most recent Calculations: </h5>{' '}
+        <ol>
+          {this.props.calculations.map(calc => (
+            <li style={{ flex: '1' }} key={calc.timestamp}>
+              {calc.computation} - {calc.timestamp}
+            </li>
+          ))}
+        </ol>
       </section>
     );
   }

@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const server = app.listen(process.env.SERVER_PORT || 8080);
 const io = require('socket.io')(server);
+io.set('origins', '*:*');
+io.set('match origin protocol', true);
 
 const Calculation = require('./models').Calculation;
 

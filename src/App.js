@@ -9,7 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      socket: io('http://localhost:3000', { transports: ['websocket'] }),
+      socket: io('http://localhost:8080', { transports: ['websocket'] }),
       calculations: []
     };
 

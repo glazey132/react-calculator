@@ -5,7 +5,6 @@ const MongoStore = require('connect-mongo')(session);
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const server = require('http').Server(app);
-const moment = require('moment');
 const io = require('socket.io')(server);
 
 const Calculation = require('./models').Calculation;
@@ -67,6 +66,6 @@ io.on('connection', function(socket) {
   });
 });
 
-server.listen(3000, function() {
-  console.log('Backend server for Electron App running on port 3000!');
+server.listen(process.env.SERVER_PORT, function() {
+  console.log('Backend server for Electron App running on port 8080!');
 });

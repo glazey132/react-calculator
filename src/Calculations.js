@@ -9,22 +9,12 @@ class Calculations extends Component {
   render() {
     return (
       <section
-        style={{
-          backgroundColor: 'aliceblue',
-          border: '1px solid darkgrey',
-          width: '20rem',
-          height: '20rem',
-          marginLeft: 'auto',
-          marginRight: 'auto',
-          display: 'flex',
-          flexDirection: 'column',
-          overflow: 'scroll'
-        }}
+        style={calulationsSectionStyle}
       >
         <h5>10 most recent Calculations: </h5>{' '}
         <ol>
           {this.props.calculations.map(calc => (
-            <li style={{ flex: '1' }} key={calc.timestamp}>
+            <li style={calculationRowStyle} key={calc.timestamp}>
               {calc.computation} - {calc.timestamp}
             </li>
           ))}
@@ -32,6 +22,21 @@ class Calculations extends Component {
       </section>
     );
   }
+}
+
+const calculationRowStyle = {
+  flex: '1' 
+}
+
+const calulationsSectionStyle = {
+  backgroundColor: 'aliceblue',
+  border: '1px solid darkgrey',
+  width: '864px',
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  overflow: 'scroll',
+  marginLeft: '1em'
 }
 
 export default Calculations;

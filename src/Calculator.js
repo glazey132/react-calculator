@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import Display from './Display';
 import Keyboard from './Keyboard';
-import _ from 'lodash';
-import axios from 'axios';
 
-const nums = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
-const operators = ['+', '-', '*', '/'];
-const fns = ['C', '='];
+import calcularConstants from './calculatorConstants';
+import _ from 'lodash';
+
 
 class Calculator extends Component {
   constructor(props) {
@@ -59,15 +57,19 @@ class Calculator extends Component {
     };
 
     const { displayValue, operator, value, waitingForOperand } = this.state;
+
     const nextValue = parseFloat(displayValue);
 
     if (value === null) {
+      
       this.setState({
         value: nextValue
       });
+      
     } else if (operator && newOperator === '=' && !waitingForOperand) {
       const currentValue = value || 0;
       const computed = operations[operator](currentValue, nextValue);
+
       this.props.socket.emit(
         'computation',
         `${currentValue}${operator}${nextValue}=${computed}`
@@ -79,10 +81,12 @@ class Calculator extends Component {
         waitingForOperand: false
       });
     }
+
     this.setState({
       waitingForOperand: true,
       operator: newOperator
     });
+    
   };
 
   clearDisplay = () => {
@@ -96,49 +100,63 @@ class Calculator extends Component {
 
   handleKeyPress = async e => {
     const { displayValue } = this.state;
-    console.log('event in calc ', e);
-    if (_.indexOf(operators, e) !== -1) {
+    if (calcularConstants.operators.includes(e)) {
       this.inputOperator(e);
-    } else if (_.indexOf(fns, e) !== -1) {
+    } else if (calcularConstants.fns.includes(e)) {
+
       if (e === 'C') {
         this.clearDisplay();
-      } else if (e === '=') {
+      } else {
         this.inputOperator(e);
       }
-    } else if (_.indexOf(nums, e) !== -1) {
+      
+    } else if (calcularConstants.nums.includes(e)) {
       if (e === '.') {
+
         if (displayValue.indexOf('.') === -1) {
           this.inputDecimal();
         }
+
       } else {
+
+        // clear the display if user selects a digit directly after running a calculation
+        if (this.state.operator === '=') {
+          this.clearDisplay();
+        }
         this.inputDigit(e);
       }
     }
+
   };
 
   render() {
     const { displayValue } = this.state;
     return (
       <section
-        style={{
-          backgroundColor: 'aliceblue',
-          border: '1px solid darkgrey',
-          width: '20rem',
-          height: '20rem',
-          marginLeft: 'auto',
-          marginRight: 'auto'
-        }}
+        style={calculatorSectionStyle}
       >
         <Display displayValue={displayValue} />
         <Keyboard
           handleKeyPress={this.handleKeyPress}
-          numKeys={nums}
-          fnKeys={fns}
-          operatorKeys={operators}
+          numKeys={calcularConstants.calculatorOrder}
         />
       </section>
     );
   }
+}
+
+const calculatorSectionStyle = {
+  backgroundColor: '#232425',
+  border: '1px solid darkgrey',
+  minWidth: '500px',
+  maxWidth: '500px',
+  paddingRight: '5px',
+  height: '66%',
+  minHeight: '400px',
+  marginLeft: '1rem',
+  paddingLeft: '3px',
+  paddingTop: '5px',
+  boxShadow: 'inset 3px 3px black',
 }
 
 export default Calculator;

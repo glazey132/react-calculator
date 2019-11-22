@@ -2,66 +2,49 @@ import React, { Component } from 'react';
 
 function Keyboard(props) {
   return (
-    <section
-      style={{
-        border: '1px solid darkgrey',
-        width: '15rem',
-        height: '15rem',
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        display: 'flex',
-        backgroundColor: 'antiqueWhite'
-      }}
-    >
-      <div style={{ margin: '.1rem' }}>
+      <div style={keyboardStyle}>
         {props.numKeys.map(key => (
           <button
             key={key}
             value={key}
-            style={{
-              width: '3.5rem',
-              height: '2.2rem',
-              margin: '.11rem',
-              borderRadius: '1rem'
-            }}
+            style={keyStyleObj(key)}
             onClick={e => props.handleKeyPress(e.target.value)}
           >
             {key}
           </button>
-        ))}
-        {props.operatorKeys.map(key => (
-          <button
-            key={key}
-            value={key}
-            style={{
-              width: '3.5rem',
-              height: '2.2rem',
-              margin: '.11rem',
-              borderRadius: '1rem'
-            }}
-            onClick={e => props.handleKeyPress(e.target.value)}
-          >
-            {key}
-          </button>
-        ))}
-        {props.fnKeys.map(key => (
-          <button
-            key={key}
-            value={key}
-            style={{
-              width: '3.5rem',
-              height: '2.2rem',
-              margin: '.11rem',
-              borderRadius: '1rem'
-            }}
-            onClick={e => props.handleKeyPress(e.target.value)}
-          >
-            {key}
-          </button>
-        ))}
+        ))} 
       </div>
-    </section>
   );
 }
+
+const keyboardStyle = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  border: '10px solid #C0C0C0'
+}
+
+/**
+ * calculates a buttons color
+ * @param {*} key - button key
+ */
+const keyStyleObj = function(key) {
+  let backgroundColor;
+  if (key === '+' || key === '-' || key === '*' || key === '/') {
+    backgroundColor = 'darkOrange';
+  } else if (key === '=') {
+    backgroundColor = 'springGreen'
+  } else if (key === 'C') {
+    backgroundColor = 'tomato'
+  }
+  else {
+    backgroundColor = 'dodgerBlue'
+  }
+  return {
+    width: '6rem',
+    height: '4rem',
+    margin: '.11rem',
+    backgroundColor: backgroundColor
+  }
+};
 
 export default Keyboard;

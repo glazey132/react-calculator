@@ -7,7 +7,7 @@ import io from 'socket.io-client';
 class App extends Component {
   constructor(props) {
     super(props);
-    const socket = io.connect('ws://react-calc-12345.herokuapp.com');
+    const socket = io.connect('wss://react-calc-12345.herokuapp.com/');
     this.state = {
       socket,
       calculations: []

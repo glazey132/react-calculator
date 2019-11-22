@@ -34,7 +34,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Credentials', true);
   res.header(
     'Access-Control-Allow-Origin',
-    'ws://react-calc-12345.herokuapp.com'
+    'wss://react-calc-12345.herokuapp.com/'
   );
   res.header('Access-Control-Allow-Methods', 'OPTIONS, POST, GET');
   res.header(

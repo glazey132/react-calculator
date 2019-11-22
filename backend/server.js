@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 (server = require('http').createServer(app)),
   (io = require('socket.io').listen(server)),
-  server.listen(process.env.SERVER_PORT || 3000);
+  server.listen(process.env.SERVER_PORT || 8080);
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const bodyParser = require('body-parser');
@@ -30,19 +30,19 @@ app.use(
   })
 );
 
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Credentials', true);
-//   res.header(
-//     'Access-Control-Allow-Origin',
-//     'https://react-calc-12345.herokuapp.com/'
-//   );
-//   res.header('Access-Control-Allow-Methods', 'OPTIONS, POST, GET');
-//   res.header(
-//     'Access-Control-Allow-Headers',
-//     'Origin, X-Requested-With, Content-Type, Accept'
-//   );
-//   next();
-// });
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header(
+    'Access-Control-Allow-Origin',
+    'https://react-calc-12345.herokuapp.com'
+  );
+  res.header('Access-Control-Allow-Methods', 'OPTIONS, POST, GET');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
 
 // Example route
 app.get('/', function(req, res) {

@@ -8,6 +8,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     const socket = io.connect('https://react-calc-12345.herokuapp.com');
+    console.log("TCL: App -> constructor -> socket", socket)
     this.state = {
       socket,
       calculations: []

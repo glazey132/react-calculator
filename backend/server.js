@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 (server = require('http').createServer(app)),
   (io = require('socket.io').listen(server)),
-  server.listen(process.env.SERVER_PORT || 8080);
+  server.listen(process.env.PORT || 3000);
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const bodyParser = require('body-parser');

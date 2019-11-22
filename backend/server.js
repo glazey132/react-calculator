@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 (server = require('http').createServer(app)),
   (io = require('socket.io').listen(server)),
-  server.listen(process.env.PORT || 3000);
+  server.listen(process.env.PORT || 5000);
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const bodyParser = require('body-parser');
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Credentials', true);
   res.header(
     'Access-Control-Allow-Origin',
-    'https://react-calc-12345.herokuapp.com'
+    'ws://react-calc-12345.herokuapp.com'
   );
   res.header('Access-Control-Allow-Methods', 'OPTIONS, POST, GET');
   res.header(

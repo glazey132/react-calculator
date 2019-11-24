@@ -1,12 +1,13 @@
 const express = require('express');
-const socketIO = require('socket.io');
-const app = express()
-  .listen(process.env.PORT || 3000);
-const io = socketIO(app);
+const SocketIO = require('socket.io');
+
+const app = express();
+const server = app.listen(process.env.PORT || 3000);
+
+const io = SocketIO.listen(server);
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
-const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const Calculation = require('./models').Calculation;
@@ -19,10 +20,9 @@ mongoose
   )
   .then(() => console.log('Connected to mongoose'))
   .catch(err => console.error(err));
+
 mongoose.Promise = global.Promise;
-//BODYPARSER
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+
 //Session
 app.use(
   session({
@@ -45,16 +45,12 @@ app.use(
 //   next();
 // });
 
-// Example route
-app.get('/', function(req, res) {
-  res.send('Hello world');
-});
-
 io.on('connection', function(socket) {
   console.log('connected to sockets!');
 
   socket.on('mount', function() {
     console.log('user mounted');
+
     Calculation.find()
       .sort({ timestamp: 'desc' })
       .limit(10)
@@ -62,13 +58,16 @@ io.on('connection', function(socket) {
         socket.emit('calculationsUpdate', res);
       });
   });
+
   socket.on('computation', function(computation) {
     console.log('socket received computation ', computation);
     let newDate = new Date().toLocaleString();
+
     let newCalculation = new Calculation({
       computation: computation,
       timestamp: newDate
     });
+
     newCalculation.save(function(error, newCalc) {
       if (error) {
         console.log('error: ', error);
@@ -81,5 +80,6 @@ io.on('connection', function(socket) {
           });
       }
     });
+    
   });
 });

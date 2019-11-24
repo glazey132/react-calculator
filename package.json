@@ -3,14 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "axios": "^0.18.0",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.3",
-    "concurrently": "^3.6.1",
     "connect-mongo": "^2.0.1",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
-    "lodash": "^4.17.10",
     "moment": "^2.22.2",
     "mongoose": "^5.7.12",
     "react": "^16.4.2",
@@ -20,7 +17,6 @@
     "socket.io-client": "^2.1.1"
   },
   "scripts": {
-    "dev": "concurrently -k \"npm run start\" \"npm run server\"",
     "start": "react-scripts start",
     "server": "nodemon backend/server.js",
     "build": "react-scripts build",

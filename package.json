@@ -10,20 +10,14 @@
     "express-session": "^1.15.6",
     "moment": "^2.22.2",
     "mongoose": "^5.7.12",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "react-scripts": "1.1.4",
-    "socket.io": "^2.1.1",
-    "socket.io-client": "^2.1.1"
+    "socket.io": "^2.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "server": "nodemon backend/server.js",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "start": "node server.js",
+    "devServer": "nodemon server.js"
   },
   "devDependencies": {
+    "concurrently": "^5.0.0",
     "nodemon": "^2.0.0"
   }
 }

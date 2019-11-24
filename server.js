@@ -55,7 +55,12 @@ io.on('connection', function(socket) {
       .sort({ timestamp: 'desc' })
       .limit(10)
       .exec(function(err, res) {
-        socket.emit('calculationsUpdate', res);
+        if (err) {
+          console.error(err);
+        } else {
+          console.log("TCL: res", res)
+          socket.emit('calculationsUpdate', res);
+        }
       });
   });
 

@@ -10,7 +10,7 @@
     "express-session": "^1.15.6",
     "moment": "^2.22.2",
     "mongoose": "^5.7.12",
-    "socket.io": "^2.1.1"
+    "socket.io": "^2.4.0"
   },
   "scripts": {
     "start": "node server.js",
